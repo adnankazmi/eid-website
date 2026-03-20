@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eid Mubarak 🌙</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #eef6f3;
+            text-align: center;
+        }
+
+        /* 🌙 Banner */
+        .banner {
+            width: 100%;
+            height: 260px;
+            background: url('file:///C:/Users/Syed%20Adnan%20Kazmi/OneDrive/Documents/Eid-Website/banner.jpg') no-repeat center;
+            background-size: cover;
+            animation: fadeIn 2s ease;
+        }
+
+        /* 🎯 Container */
+        .container {
+            margin-top: 40px;
+            animation: slideUp 1.5s ease;
+        }
+
+        input {
+            padding: 14px;
+            width: 260px;
+            border-radius: 10px;
+            border: 2px solid #1ce777;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #132426;
+            box-shadow: 0 0 10px #1ce777;
+        }
+
+        button {
+            padding: 14px 30px;
+            border: none;
+            background: #132426;
+            color: white;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #1ce777;
+            color: #132426;
+        }
+
+        /* Card */
+        .card {
+            margin: 40px auto;
+            padding: 30px;
+            width: 320px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: none;
+            animation: popUp 0.8s ease;
+        }
+
+        /* Floating */
+        .emoji {
+            position: fixed;
+            font-size: 20px;
+            animation: float 6s linear infinite;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        @keyframes slideUp {
+            from {transform: translateY(50px); opacity:0;}
+            to {transform: translateY(0); opacity:1;}
+        }
+
+        @keyframes popUp {
+            from {transform: scale(0.5); opacity:0;}
+            to {transform: scale(1); opacity:1;}
+        }
+
+        @keyframes float {
+            from {transform: translateY(100vh);}
+            to {transform: translateY(-10vh);}
+        }
+
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+<!-- 🌙 Banner -->
+<div class="banner"></div>
+
+<!-- 🎯 Input -->
+<div class="container">
+    <h2 style="color:#132426;"> Enter Your Name</h2>
+
+    <input type="text" id="nameInput" placeholder="Type your name">
+    <br>
+
+    <button onclick="showMessage()">Celebrate</button>
+    <br>
+	</div>
+
+<!-- 💌 Card -->
+<div class="card" id="card">
+    <h2 id="greet" style="color:#132426;"></h2>
+    <p id="msg"></p>
+    <p id="eidi" style="color:#1ce777;"></p>
+</div>
+
+<audio autoplay loop>
+    <source src="file:///C:/Users/Syed%20Adnan%20Kazmi/OneDrive/Documents/Eid-Website/music.m4a.m4a" type="audio/mpeg">
+</audio>
+
+<script>
+
+// 🟢 DATABASE (EDIT HERE)
+var people = {
+	"ayesha": {
+   	 message: "Assalam o Alaikum ayesha baji advance eid mubarak🌙 Aj kal insta pe Islamic reels nahi baj rahe the, ma ne socha Eid Mubarak bol du shayad Eidi baj da 😄",
+    },
+      "laiba": {
+        message: "Assalam o Alikum Laiba Baji 😎 advance Eid Mubarak is dafa Eid pa mara eidi dana ka to program ha lekin is eid pa mobile wali bat nahi hai📵 aor is dafa plz chart acha sa banaia pechli dafa be... wasa larkai to hoti rahati ha is dafa dua be la la Allah Tahal tumhari zindagi ko khushiyon se bhar de, tumhe sehat aur lambi umar ata kare, aur tumhara har din roshan aur barkat banaia Ameen",
+    },
+    "wuska": {
+        message: "Assalam o Alaikum Wuska api advance Eid Mubarak 🎉 sorry ma na ap ka sath bhot ghalt kia jab ka ap na muja bahi kaha ma is ka laia sharminda hou sorry!<br> is khushi ke mauqe par muja maf kar dena <br> and CID bhi join kar lan? 😆 ma na mashwara dia tha ap ke friend ko lekin un na kaha ap khud khaya... <br>Baki rahi Eid, wo ap ko inshallah university open ho ge tab ap ka bahi apko da dega lakin abi ka laia meri bhan ke liye Dua ha: <br>“Allah apki zindagi ko hamesha khushiyon se bhar de, apko sehatmand aur lambi umar ata kare, aur apke har kaam mein barkat ho aor asa he hamasah kush rakha.” ✨<br>Ameen!",
+    },
+    "sehrish": {
+        message: "Assalam o Alaikum Sehrish Api <br>Eid Mubarak <br>Allah Ta’ala ne apko is Eid pe ek bohot hi pyara tofa dia hai, jis se apke aur hamare Eid aur bhi achi ho gi 💖<br>Allah Ta’ala us nanni guria ko aur apko jald se jald shat ata farmaiye, apke family ko bhi hamesha khush rakhe apke aur Wajahat bhai ke jodi ko salamat rakhe, Ameen <br><br> cholo ab paisa pora ho ga han Eidi do 😆💸",
+    },
+    "mehwish": {
+   	message: "Assalam o Alaikum Mehwish api <br>Is khushi ke mauqe par apko aur Muneeb bhai ko advance Eid Mubarak! 🎉💖<br>Allah Pak ap dono ki jodi hamasha salamat rakhe aur apke har khuwish ko mukammal kare, Ameen 🙏✨<br><br>Is dafa ap saath nahi ho, lekin ajkal online ka zamaana hai, Eidi online baj dena 😆💸",
+    },
+    "maheen": {
+   	 message: "Assalam o Alaikum Madam <br>wasa to hum larta rehte hain, lekin eid ha to is laia advance ma Eid Mubarak 🎉💖<br>Bhain ko bhi bol dena 😜, <br>larta to rahta hai lekin is dafa dua be da data hou kia yad rakha ge aor dua ya ka: <br>“Allah Pak apko wo khushiyan ata kare jo apke dil me hain, har khuwish poori kare, aur apko hamesha salamat rakhe.” Ameen✨<br><br>Ab is Eid pe dua kafi hai, Eidi next Eid pe dou ga😆",
+    },
+    "mohiz": {
+   	 message: "Eid Mubarak Mohiz... <br><br>mohiz you are not just my friend, you are my brother. <br>Because of you, I learned how to become something in life and how to move forward thanks for this and <br><br>InshaAllah we will grow together, work together, and support each other in every step and one day, InshaAllah, we will buy our dream car BMW.. <br><br>And i pray for you “May Allah give you success in every step of your life, fulfill all your dreams, bless you with happiness, health, and endless opportunities, give you what is in your heart😜, and always keep our brotherhood strong.”<br>Ameen",
+    },
+    "Hamza": {
+   	 message: "Advance Eid Mubarak Hamza.. <br><br>Hamza you are special for me because of you I became a designer at Kingdomride <br>I really appreciate your support and guidance.<br><br>May this Eid bring you more happiness, success, and new opportunities in your life <br><br>And last… Kingdomride se Eidi bhi la da 😆",
+    },
+    "huzaifa": {
+   	 message: "Eid Mubarak Huzaifa <br><br>zafa to mera bara acha cousin hai bas ak aor acha kaam kar de... apni mam ko bol chawal banai aor sath us ka vlog bana la and wo vlog la ka muja sahre kar da tak ka wo ma apni hona wali bewi ko share kar dou ke laiba aur mama to pata nahi chawalon ke sath kya kya karti hain 😆bechari mara hona wali biwi be wasa he chawal na banaia is lai vlog la ka baj da aor tara  laia is eid pa ya dua ha ka <br><br>“May Allah bless you with happiness, success, and all the good things in your life, and always keep you smiling with vlog wali bhabi.” Ameen",
+   },
+    "parii": {
+   	 message: "Eid Mubarak Maryam... <br><br>On this Eid, may Allah make you more happy than every Eid before... May He give you happiness in every step of your life, keep you safe always, and fill your life with endless joy 💖<br><br>May Allah bless you with peace, success, good health, and everything your heart wishes for 🤲<br>May all your dreams come true and your life be full of smiles and blessings and at last ka apki yeh Eid bohot achi guzre lakin eid ke khushi ma he gum nahi hona, kyun ke Eid ke baad sab se pehle apke group ne presentation deni hai 😆", },
+
+};
+
+function showMessage() {
+    var nameInput = document.getElementById("nameInput").value.toLowerCase();
+
+    // Default: not found
+    var messageFound = null;
+
+    // Check all keys in people
+    for (var key in people) {
+        if (nameInput.includes(key)) {
+            messageFound = people[key].message;
+            break; // Stop at the first match
+        }
+    }
+
+    if (messageFound) {
+        document.getElementById("msg").innerHTML = messageFound;
+        document.getElementById("greet").style.display = "none";
+        document.getElementById("eidi").style.display = "none";
+        document.getElementById("card").style.display = "block";
+    } else {
+        alert("Name not found 😅");
+    }
+}
+
+// 🎵 MUSIC FIX
+function playMusic() {
+    var music = document.getElementById("bgMusic");
+    music.play();
+}
+
+// 🎆 FLOATING EFFECT
+for (let i = 0; i < 20; i++) {
+    let emoji = document.createElement("div");
+    emoji.className = "emoji";
+    emoji.innerHTML = "✨";
+    emoji.style.left = Math.random() * 100 + "vw";
+    emoji.style.animationDuration = (4 + Math.random() * 4) + "s";
+    document.body.appendChild(emoji);
+}
+
+</script>
+
+</body>
+</html>
